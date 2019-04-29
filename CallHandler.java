@@ -35,6 +35,7 @@ public class CallHandler {
         for(int level = call.getRank(); level < num_Levels-1;level++){
             ArrayList<Employee> employeeLevel = employLevels[level];
             for(Employee emp:employeeLevel){
+                //System.out.println(emp.free);
                 if(emp.free){
                     return emp;
                 }
@@ -45,11 +46,17 @@ public class CallHandler {
     }
     public void disPatchCall(Call call){
         Employee emp = getCallHandler(call);
+
         if(emp != null){
             emp.receiveCall(call);
         }else{
             call.reply("please wait");
-            callQueue[call.getRank()].add(call);
+            if(callQueue[call.getRank()] == null){
+                Queue<Call> callType = new LinkedList<>();
+                callQueue[call.getRank()] = callType;
+            }else {
+                callQueue[call.getRank()].add(call);
+            }
         }
 
     }
