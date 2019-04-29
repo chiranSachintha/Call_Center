@@ -1,6 +1,7 @@
 public class Employee {
     private int rank;
-    boolean free;
+    boolean free = true;
+    CallHandler callHandler;
 
     public Employee(int rank){
         this.rank = rank;
@@ -12,8 +13,10 @@ public class Employee {
     public void callHandled(Call call){
         call.disconnect();
         free = true;
+        callHandler.getNextCall(this);
     }
     public int getRank(){
         return this.rank;
     }
+
 }
