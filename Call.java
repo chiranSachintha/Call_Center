@@ -8,7 +8,11 @@ public class Call {
         this.caller = caller;
     }
     public void reply(String message){
+        System.out.println(message);
 
+    }
+    public String getCaller(){
+        return this.caller;
     }
     public void disconnect(){
 
